@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "33942020611",
+    "project_id": "astdafa-c350e",
+    "storage_bucket": "astdafa-c350e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33942020611:android:540f2b18b1bf81c9a8e436",
+        "android_client_info": {
+          "package_name": "com.example.astdafa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33942020611-altkfnc6o9jfpfik5km30o0isohbmcad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJPibvNtVBqvOHLibOr1U68ZUsLwZ0ARg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33942020611-altkfnc6o9jfpfik5km30o0isohbmcad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
