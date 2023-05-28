@@ -1,5 +1,6 @@
-import 'package:astdafa/home.dart';
+import 'package:astdafa/layout/home/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class nextstepforget extends StatefulWidget {
   const nextstepforget({Key? key}) : super(key: key);
@@ -18,118 +19,111 @@ class _nextstepforgetState extends State<nextstepforget> {
       ),
       backgroundColor: Colors.white,
       body: Container(
-        padding: const EdgeInsets.symmetric(
+        padding:REdgeInsets.symmetric(
           horizontal: 28,
         ),
         width: MediaQuery.of(context).size.width,
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              const SizedBox(
-                height: 25,
+              SizedBox(
+                height: 25.h,
               ),
               Image.asset(
                 "assets/images/astdafa.png",
-                width: 200,
-                height: 200,
+                width: 200.w,
+                height: 200.h,
               ),
               TextField(
                 decoration: InputDecoration(
                   hintText: "أدخل الكود",
                   prefixIcon: Icon(Icons.code),
                   enabledBorder: (OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide(
                         color: Colors.grey,
-                        width: 1.0,
+                        width: 1.w,
                       ))),
                   disabledBorder: (OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide(
                         color: Colors.grey,
-                        width: 1.0,
+                        width: 1.w,
                       ))),
                   focusedBorder: (OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide(
                         color: Colors.grey,
-                        width: 1.0,
+                        width: 1.w,
                       ))),
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
               TextField(
                 decoration: InputDecoration(
                   hintText: "أدخل كلمة المرور الجديدة",
                   prefixIcon: Icon(Icons.password),
                   enabledBorder: (OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide(
                         color: Colors.grey,
-                        width: 1.0,
+                        width: 1.w,
                       ))),
                   disabledBorder: (OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide(
                         color: Colors.grey,
-                        width: 1.0,
+                        width: 1.w,
                       ))),
                   focusedBorder: (OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide(
                         color: Colors.grey,
-                        width: 1.0,
+                        width: 1.w,
                       ))),
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
               TextField(
                 decoration: InputDecoration(
                   hintText: "تأكيد كلمة المرور الجديدة",
                   prefixIcon: Icon(Icons.password),
                   enabledBorder: (OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide(
                         color: Colors.grey,
-                        width: 1.0,
+                        width: 1.w,
                       ))),
                   disabledBorder: (OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide(
                         color: Colors.grey,
-                        width: 1.0,
+                        width: 1.w,
                       ))),
                   focusedBorder: (OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide(
                         color: Colors.grey,
-                        width: 1.0,
+                        width: 1.w,
                       ))),
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
               MaterialButton(
                   elevation: 5.0,
                   color: Colors.grey,
-                  padding: EdgeInsets.symmetric(
+                  padding: REdgeInsets.symmetric(
                     vertical: 20,
                     horizontal: 80,
                   ),
-                  child: const Text(
-                    "إنتهاء",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold),
-                  ),
                   shape: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(50.r),
                     borderSide: BorderSide.none,
                   ),
                   onPressed: () {
@@ -137,7 +131,14 @@ class _nextstepforgetState extends State<nextstepforget> {
                         .push(MaterialPageRoute(builder: (context) {
                       return homescreen();
                     }));
-                  }),
+                  },
+                  child: Text(
+                    "إنتهاء",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30.sp,
+                        fontWeight: FontWeight.bold),
+                  )),
             ],
           ),
         ),

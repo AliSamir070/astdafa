@@ -1,5 +1,7 @@
-import 'package:astdafa/database/model/user.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../model/user.dart';
 
 class MyDataBase {
   static CollectionReference<User> getUsersCollection() {
@@ -12,7 +14,7 @@ class MyDataBase {
         );
   }
 
-  static Future<void> addUser(User user) {
+  static Future<void> addUser(User user , String id) {
     var collection = getUsersCollection();
     var doc = collection.doc(user.id);
     user.id = doc.id;

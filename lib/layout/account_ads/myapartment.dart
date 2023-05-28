@@ -1,5 +1,6 @@
-import 'package:astdafa/add_apartment.dart';
+import 'package:astdafa/layout/add_apartment/add_apartment.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class myapartment extends StatefulWidget {
   const myapartment({Key? key}) : super(key: key);
@@ -17,9 +18,9 @@ class _myapartmentState extends State<myapartment> {
         title: const Text("إعلاناتي"),
       ),
       backgroundColor: Colors.white,
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
-        child: SingleChildScrollView(),
+        child: const SingleChildScrollView(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -32,8 +33,8 @@ class _myapartmentState extends State<myapartment> {
           );
         },
         shape: RoundedRectangleBorder(
-          side: const BorderSide(width: 4, color: Colors.white),
-          borderRadius: BorderRadius.circular(100),
+          side: BorderSide(width: 4.w, color: Colors.white),
+          borderRadius: BorderRadius.circular(100.r),
         ),
         child: const Icon(Icons.add),
       ),

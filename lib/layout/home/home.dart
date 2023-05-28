@@ -1,71 +1,72 @@
-import 'package:astdafa/login.dart';
-import 'package:astdafa/signin.dart';
+import 'package:astdafa/layout/morafk_login/login.dart';
+import 'package:astdafa/layout/msahma_signin/signin.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class homescreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Container(
-          padding: const EdgeInsets.symmetric(
+          padding: REdgeInsets.symmetric(
             horizontal: 28,
           ),
           width: MediaQuery.of(context).size.width,
           child: SingleChildScrollView(
               child: Column(children: <Widget>[
-            const SizedBox(
-              height: 150,
+            SizedBox(
+              height: 150.h,
             ),
             Image.asset("assets/images/astdafa.png",
-              width: 200,
-              height: 200,
+              width: 200.w,
+              height: 200.h,
             ),
             MaterialButton(
                 elevation: 5.0,
                 color: Colors.lightGreen,
-                padding: EdgeInsets.symmetric(
+                padding: REdgeInsets.symmetric(
                   vertical: 20,
                   horizontal: 80,
                 ),
-                child: const Text("مرافق",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
-                ),
                 shape: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(50.r),
                   borderSide: BorderSide.none,
                 ),
                 onPressed: () {Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) {
                     return const LoginScreen();
                   }));
-                }),
-            const SizedBox(height: 20,),
+                },
+                child: Text("مرافق",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.sp,
+                      fontWeight: FontWeight.bold),
+                )),
+            SizedBox(height: 20.h,),
             MaterialButton(
                 elevation: 5.0,
                 color: Colors.green,
-                padding: EdgeInsets.symmetric(
+                padding: REdgeInsets.symmetric(
                   vertical: 20,
                   horizontal: 80,
                 ),
-                child: const Text("مساهم",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
-                ),
                 shape: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(50.r),
                   borderSide: BorderSide.none,
                 ),
                 onPressed: () {Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) {
                     return const signinscreen();
                   }));
-                }),
-            const SizedBox(height: 20,),
+                },
+                child: Text("مساهم",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.sp,
+                      fontWeight: FontWeight.bold),
+                )),
+            SizedBox(height: 20.h,),
           ])),
         ));
   }

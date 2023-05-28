@@ -1,8 +1,10 @@
-import 'package:astdafa/database/my_database.dart';
-import 'package:astdafa/forget_the_password.dart';
-import 'package:astdafa/myapartment.dart';
-import 'package:astdafa/signup.dart';
+import 'package:astdafa/layout/msahma_forgot_passowrd/forget_the_password.dart';
+import 'package:astdafa/layout/account_ads/myapartment.dart';
+import 'package:astdafa/layout/msahma_signup/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../database_helper/my_database.dart';
 
 class signinscreen extends StatefulWidget {
   const signinscreen({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class _signinscreenState extends State<signinscreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.symmetric(
+        padding: REdgeInsets.symmetric(
           horizontal: 28,
         ),
         width: MediaQuery.of(context).size.width,
@@ -30,8 +32,8 @@ class _signinscreenState extends State<signinscreen> {
                 children: <Widget>[
                   Image.asset(
                     "assets/images/astdafa.png",
-                    width: 200,
-                    height: 200,
+                    width: 200.w,
+                    height: 200.h,
                   ),
                   TextFormField(
                     controller: emailController,
@@ -39,28 +41,28 @@ class _signinscreenState extends State<signinscreen> {
                       hintText: "ادخل البريد الإلكتروني",
                       prefixIcon: const Icon(Icons.email),
                       enabledBorder: (OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: const BorderSide(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide: BorderSide(
                             color: Colors.grey,
-                            width: 1.0,
+                            width: 1.w,
                           ))),
                       disabledBorder: (OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: const BorderSide(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide: BorderSide(
                             color: Colors.grey,
-                            width: 1.0,
+                            width: 1.w,
                           ))),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: const BorderSide(
+                        borderRadius: BorderRadius.circular(20.r),
+                        borderSide: BorderSide(
                           color: Colors.grey,
-                          width: 1.0,
+                          width: 1.w,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: 20.h,
                   ),
                   TextFormField(
                     controller: passwordController,
@@ -69,38 +71,38 @@ class _signinscreenState extends State<signinscreen> {
                       hintText: "أدخل كلمة المرور",
                       prefixIcon: const Icon(Icons.password),
                       enabledBorder: (OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: const BorderSide(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide: BorderSide(
                             color: Colors.grey,
-                            width: 1.0,
+                            width: 1.w,
                           ))),
                       disabledBorder: (OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: const BorderSide(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide: BorderSide(
                             color: Colors.grey,
-                            width: 1.0,
+                            width: 1.w,
                           ))),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: const BorderSide(
+                        borderRadius: BorderRadius.circular(20.r),
+                        borderSide: BorderSide(
                           color: Colors.grey,
-                          width: 1.0,
+                          width: 1.w,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                 SizedBox(
+                    height: 20.h,
                   ),
                   MaterialButton(
                       elevation: 5.0,
                       color: Colors.grey,
-                      padding: const EdgeInsets.symmetric(
+                      padding: REdgeInsets.symmetric(
                         vertical: 20,
                         horizontal: 80,
                       ),
                       shape: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
+                        borderRadius: BorderRadius.circular(50.r),
                         borderSide: BorderSide.none,
                       ),
                       onPressed: () {
@@ -120,15 +122,15 @@ class _signinscreenState extends State<signinscreen> {
                           }
                         }, onError: (e) => print(e.toString()));
                       },
-                      child: const Text(
+                      child: Text(
                         "تسجيل الدخول",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 24.sp,
                             fontWeight: FontWeight.bold),
                       )),
-                  const SizedBox(
-                    height: 20,
+                 SizedBox(
+                    height: 20.h,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -137,16 +139,16 @@ class _signinscreenState extends State<signinscreen> {
                         return const forgetthepassword();
                       }));
                     },
-                    child: const Text(
+                    child: Text(
                       "هل نسيت كلمة المرور؟",
                       style: TextStyle(
                         color: Colors.blue,
-                        fontSize: 18,
+                        fontSize: 18.sp,
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: 20.h,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -155,11 +157,11 @@ class _signinscreenState extends State<signinscreen> {
                         return const signup();
                       }));
                     },
-                    child: const Text(
+                    child: Text(
                       "التسجيل",
                       style: TextStyle(
                         color: Colors.blue,
-                        fontSize: 18,
+                        fontSize: 18.sp,
                       ),
                     ),
                   ),

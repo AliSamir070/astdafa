@@ -1,6 +1,7 @@
-import 'package:astdafa/detelis_apartment.dart';
-import 'package:astdafa/shkwa.dart';
+import 'package:astdafa/layout/apartment_details/detelis_apartment.dart';
+import 'package:astdafa/layout/add_complain/shkwa.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class apartment extends StatefulWidget {
   const apartment({Key? key}) : super(key: key);
@@ -19,12 +20,12 @@ class _apartmentState extends State<apartment> {
         ),
         backgroundColor: Colors.white,
         body: Container(
-          padding: const EdgeInsets.symmetric(),
+          padding: REdgeInsets.symmetric(),
           width: MediaQuery.of(context).size.width,
           child: SingleChildScrollView(
               child: Column(children: <Widget>[
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             InkWell(
               onTap: () {
@@ -36,8 +37,8 @@ class _apartmentState extends State<apartment> {
               },
               child: Image.asset("assets/images/example.jpeg"),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             InkWell(
               onTap: () {
@@ -49,8 +50,8 @@ class _apartmentState extends State<apartment> {
               },
               child: Image.asset("assets/images/example1.jpeg"),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             InkWell(
               onTap: () {
@@ -62,8 +63,8 @@ class _apartmentState extends State<apartment> {
               },
               child: Image.asset("assets/images/example2.jpeg"),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             InkWell(
               onTap: () {
@@ -75,8 +76,8 @@ class _apartmentState extends State<apartment> {
               },
               child: Image.asset("assets/images/example3.jpeg"),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             InkWell(
               onTap: () {
@@ -88,8 +89,8 @@ class _apartmentState extends State<apartment> {
               },
               child: Image.asset("assets/images/example4.jpeg"),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             InkWell(
               onTap: () {
@@ -101,8 +102,8 @@ class _apartmentState extends State<apartment> {
               },
               child: Image.asset("assets/images/example5.jpeg"),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             InkWell(
               onTap: () {
@@ -114,25 +115,18 @@ class _apartmentState extends State<apartment> {
               },
               child: Image.asset("assets/images/example6.jpeg"),
             ),
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: 30.h,
                 ),
             MaterialButton(
                 elevation: 5.0,
                 color: Colors.red,
-                padding: EdgeInsets.symmetric(
+                padding: REdgeInsets.symmetric(
                   vertical: 10,
                   horizontal: 20,
                 ),
-                child: const Text(
-                  "أضف شكوى",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
-                ),
                 shape: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(50.r),
                   borderSide: BorderSide.none,
                 ),
                 onPressed: () {
@@ -140,7 +134,14 @@ class _apartmentState extends State<apartment> {
                       .push(MaterialPageRoute(builder: (context) {
                     return const shkwa();
                   }));
-                }),
+                },
+                child:Text(
+                  "أضف شكوى",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.sp,
+                      fontWeight: FontWeight.bold),
+                )),
           ])),
         ));
   }

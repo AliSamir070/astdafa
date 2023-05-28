@@ -1,5 +1,6 @@
-import 'package:astdafa/hagz.dart';
+import 'package:astdafa/layout/hagz/hagz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class detilesapartment extends StatefulWidget {
   const detilesapartment({Key? key}) : super(key: key);
@@ -17,30 +18,23 @@ class _detilesapartmentState extends State<detilesapartment> {
             width: MediaQuery.of(context).size.width,
             child: SingleChildScrollView(
               child: Column(children: <Widget>[
-                const SizedBox(
-                  height: 35,
+                SizedBox(
+                  height: 35.h,
                 ),
                 Image.asset(
                   "assets/images/astdafa.png",
-                  width: 200,
-                  height: 200,
+                  width: 200.w,
+                  height: 200.h,
                 ),
                 MaterialButton(
                     elevation: 5.0,
                     color: Colors.grey,
-                    padding: EdgeInsets.symmetric(
+                    padding: REdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 80,
                     ),
-                    child: const Text(
-                      "حجز",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold),
-                    ),
                     shape: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50),
+                      borderRadius: BorderRadius.circular(50.r),
                       borderSide: BorderSide.none,
                     ),
                     onPressed: () {
@@ -48,7 +42,14 @@ class _detilesapartmentState extends State<detilesapartment> {
                           .push(MaterialPageRoute(builder: (context) {
                         return hagz();
                       }));
-                    }),
+                    },
+                    child:Text(
+                      "حجز",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30.sp,
+                          fontWeight: FontWeight.bold),
+                    )),
               ]
               ),
             )

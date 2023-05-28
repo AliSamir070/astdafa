@@ -38,6 +38,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.6.1
   cloud_firestore: ^4.7.1
+  flutter_bloc: ^8.1.1
+  cached_network_image: ^3.2.3
+  image_picker: ^0.8.7+5
+  carousel_slider: ^4.2.1
+  fluttertoast: ^8.1.1
+  flutter_screenutil: ^5.4.0
+  loading_animation_widget: ^1.2.0+4
 
 dev_dependencies:
   flutter_test:
