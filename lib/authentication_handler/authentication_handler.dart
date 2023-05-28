@@ -9,6 +9,7 @@ class AuthHandler{
     return await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
   }
   static String? getUser(){
+    print("uid ${firebaseAuth.currentUser?.uid}");
     return firebaseAuth.currentUser?.uid;
   }
 }

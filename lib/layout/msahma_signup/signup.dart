@@ -1,6 +1,7 @@
 import 'package:astdafa/layout/account_ads/myapartment.dart';
 import 'package:astdafa/layout/home/home.dart';
 import 'package:astdafa/layout/msahma_signup/cubit/msahma_sign_up_cubit.dart';
+import 'package:astdafa/shared/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -73,6 +74,18 @@ class _signupState extends State<signup> {
                             color: Colors.grey,
                             width: 1.w,
                           ))),
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide:  BorderSide(
+                            color: Colors.grey,
+                            width: 1.w,
+                          )),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide:  BorderSide(
+                            color: Colors.grey,
+                            width: 1.w,
+                          )),
                     ),
                   ),
                    SizedBox(height: 20.h),
@@ -100,6 +113,18 @@ class _signupState extends State<signup> {
                             color: Colors.grey,
                             width: 1.w,
                           ))),
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide:  BorderSide(
+                            color: Colors.grey,
+                            width: 1.w,
+                          )),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide:  BorderSide(
+                            color: Colors.grey,
+                            width: 1.w,
+                          )),
                     ),
                   ),
                    SizedBox(height: 20.h),
@@ -128,6 +153,18 @@ class _signupState extends State<signup> {
                             color: Colors.grey,
                             width: 1.w,
                           ))),
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide:  BorderSide(
+                            color: Colors.grey,
+                            width: 1.w,
+                          )),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide:  BorderSide(
+                            color: Colors.grey,
+                            width: 1.w,
+                          )),
                     ),
                   ),
                    SizedBox(
@@ -144,6 +181,18 @@ class _signupState extends State<signup> {
                       hintText: "أدخل رقم الهاتف",
                       prefixIcon: const Icon(Icons.phone),
                       enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide:  BorderSide(
+                            color: Colors.grey,
+                            width: 1.w,
+                          )),
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide:  BorderSide(
+                            color: Colors.grey,
+                            width: 1.w,
+                          )),
+                      errorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.r),
                           borderSide:  BorderSide(
                             color: Colors.grey,
@@ -188,7 +237,9 @@ class _signupState extends State<signup> {
                                 phoneController.text,
                                 passwordController.text);
                           },
-                          child: Text(
+                          child: state is MsahmaSignUpLoadingState
+                          ?CustomLoading()
+                              :Text(
                             "التسجيل",
                             style: TextStyle(
                                 color: Colors.white,
@@ -221,6 +272,8 @@ class _signupState extends State<signup> {
     if(value!.isEmpty){
       return "يجب ادخاله";
     } else if(value.length < 11){
+      return "غير صحيح";
+    }else if(!value.startsWith("011") && !value.startsWith("010") && !value.startsWith("012") && !value.startsWith("015")){
       return "غير صحيح";
     } else {
       return null;

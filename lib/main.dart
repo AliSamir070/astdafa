@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         builder: (context , child){
           return MaterialApp(
-            title: 'Flutter Demo',
+            title: 'Astdafa',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               primarySwatch: Colors.blue,
