@@ -12,4 +12,7 @@ class AuthHandler{
     print("uid ${firebaseAuth.currentUser?.uid}");
     return firebaseAuth.currentUser?.uid;
   }
+  static Future<void> signout()async{
+    return await firebaseAuth.signOut();
+  }
 }

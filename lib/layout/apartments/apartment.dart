@@ -3,6 +3,8 @@ import 'package:astdafa/layout/add_complain/shkwa.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../home/home.dart';
+
 class apartment extends StatefulWidget {
   const apartment({Key? key}) : super(key: key);
 
@@ -15,8 +17,21 @@ class _apartmentState extends State<apartment> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           centerTitle: true,
           title: const Text("الشقق المتاحة"),
+          actions: [
+            IconButton(
+                onPressed: (){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>homescreen()));
+                },
+                icon: Icon(
+                  Icons.exit_to_app_rounded,
+                  color: Colors.white,
+                  size: 20.r,
+                )
+            )
+          ],
         ),
         backgroundColor: Colors.white,
         body: Container(

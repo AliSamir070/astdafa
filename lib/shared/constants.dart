@@ -10,6 +10,7 @@ class Constants{
       r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
       r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
       r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
+  static RegExp codeRegex = RegExp(r'^[A-Za-z]\d{4}$');
 }
 void showToast(String message) {
   Fluttertoast.showToast(

@@ -27,10 +27,14 @@ class MsahmaSignUpCubit extends Cubit<MsahmaSignUpState> {
           );
           MyDataBase.addUser(user, AuthHandler.getUser()??"").then((value){
             emit(MsahmaSignUpSuccessState("تم التسجيل بنجاح"));
+          }).catchError((error){
+            emit(MsahmaSignUpErrorState(FirebaseErrorHandler.handleError(error)));
           });
+        }).catchError((error){
+          emit(MsahmaSignUpErrorState(FirebaseErrorHandler.handleError(error)));
         });
-      }catch(e){
-        emit(MsahmaSignUpErrorState(FirebaseErrorHandler.handleError(e as Exception)));
+      }on Exception catch(e){
+        emit(MsahmaSignUpErrorState(FirebaseErrorHandler.handleError(e)));
       }
     }
   }

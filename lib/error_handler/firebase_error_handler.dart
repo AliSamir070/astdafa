@@ -6,6 +6,9 @@ class FirebaseErrorHandler{
     String errorMessage = "Error";
     if (error is FirebaseAuthException) {
       switch (error.code) {
+        case 'network-request-failed':
+          errorMessage = "Network error";
+          break;
         case 'invalid-email':
           errorMessage = 'Invalid email address.';
           break;
