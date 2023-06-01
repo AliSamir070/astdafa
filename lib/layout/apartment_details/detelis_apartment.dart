@@ -1,9 +1,11 @@
 import 'package:astdafa/layout/hagz/hagz.dart';
+import 'package:astdafa/model/ApartmentModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class detilesapartment extends StatefulWidget {
-  const detilesapartment({Key? key}) : super(key: key);
+  ApartmentModel apartmentModel;
+  detilesapartment(this.apartmentModel);
 
   @override
   State<detilesapartment> createState() => _detilesapartmentState();

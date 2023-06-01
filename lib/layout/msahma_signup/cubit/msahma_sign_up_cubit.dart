@@ -26,7 +26,11 @@ class MsahmaSignUpCubit extends Cubit<MsahmaSignUpState> {
             id: AuthHandler.getUser()
           );
           MyDataBase.addUser(user, AuthHandler.getUser()??"").then((value){
-            emit(MsahmaSignUpSuccessState("تم التسجيل بنجاح"));
+            AuthHandler.firebaseAuth.currentUser?.updateDisplayName(user.name).then((value){
+              emit(MsahmaSignUpSuccessState("تم التسجيل بنجاح"));
+            }).catchError((error){
+              emit(MsahmaSignUpErrorState(FirebaseErrorHandler.handleError(error)));
+            });
           }).catchError((error){
             emit(MsahmaSignUpErrorState(FirebaseErrorHandler.handleError(error)));
           });

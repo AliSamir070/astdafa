@@ -43,6 +43,7 @@ class _signinscreenState extends State<signinscreen> {
                       height: 200.h,
                     ),
                     TextFormField(
+                      keyboardType: TextInputType.emailAddress,
                       validator: validateEmail,
                       controller: emailController,
                       decoration: InputDecoration(
@@ -148,7 +149,7 @@ class _signinscreenState extends State<signinscreen> {
                                 "تسجيل الدخول",
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 24.sp,
+                                    fontSize: 22.sp,
                                     fontWeight: FontWeight.bold),
                               ));
                         },

@@ -12,3 +12,10 @@ class MyApartmentSignOutErrorState extends MyApartmentState {
   String error;
   MyApartmentSignOutErrorState(this.error);
 }
+
+class MyApartmentsGetApartmentsLoadingState extends MyApartmentState{}
+class MyApartmentsGetApartmentsSuccessState extends MyApartmentState{}
+class MyApartmentsGetApartmentsErrorState extends MyApartmentState{
+  String error;
+  MyApartmentsGetApartmentsErrorState(this.error);
+}

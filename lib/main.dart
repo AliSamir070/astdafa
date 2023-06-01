@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'blocObserver.dart';
 import 'firebase_options.dart';
+import 'layout/account_ads/cubit/my_apartment_cubit.dart';
 
 void main() async {
   Bloc.observer = MyBlocObserver();
@@ -17,7 +18,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context)=>MyApartmentCubit())
+      ],
+      child: const MyApp())
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -34,6 +40,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               primarySwatch: Colors.blue,
+              fontFamily: "Cairo"
             ),
             home: AuthHandler.getUser()==null?homescreen():myapartment(),
           );

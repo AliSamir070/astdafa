@@ -34,6 +34,7 @@ class MorafkLoginCubit extends Cubit<MorafkLoginState> {
             }
           }
         }).catchError((e){
+          print(e);
           emit(MorafkLoginErrorState(FirebaseErrorHandler.handleError(e)));
         });
       }on Exception catch(e){

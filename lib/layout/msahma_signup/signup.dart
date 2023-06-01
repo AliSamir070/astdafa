@@ -92,6 +92,7 @@ class _signupState extends State<signup> {
                   TextFormField(
                     validator: validateEmail,
                     controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: "البريد الالكتروني",
                       prefixIcon: const Icon(Icons.email),

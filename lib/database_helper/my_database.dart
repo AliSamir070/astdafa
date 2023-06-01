@@ -1,6 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../model/ApartmentModel.dart';
 import '../model/CodeModel.dart';
 import '../model/user.dart';
 
@@ -50,13 +51,43 @@ class MyDataBase {
   static Future<CodeModel?> readCode(String code)async{
     var collection = getCodeCollection();
     QuerySnapshot<CodeModel> snapshot= await collection.where("code",isEqualTo: code,).limit(1).get();
-    CodeModel codeModel = snapshot.docs[0].data();
-    codeModel.id = snapshot.docs[0].id;
-    return codeModel;
+    if(snapshot.docs.isEmpty){
+      return null;
+    }else{
+      CodeModel codeModel = snapshot.docs[0].data();
+      codeModel.id = snapshot.docs[0].id;
+      return codeModel;
+    }
+
   }
   static Future<void> updateCode(String id,Map<String , dynamic> data)async{
     var collection = getCodeCollection();
     var doc = collection.doc(id);
     return doc.update(data);
+  }
+
+  static CollectionReference<ApartmentModel> getApartmentCollectionRefrence(){
+    return FirebaseFirestore.instance.collection(ApartmentModel.collection)
+        .withConverter(
+        fromFirestore: (snapshot , options)=>ApartmentModel.fromJson(snapshot),
+        toFirestore: (apartment , options)=>apartment.toJson()
+    );
+  }
+
+  static Future addApartment(ApartmentModel apartmentModel){
+    var collection = getApartmentCollectionRefrence();
+    var doc = collection.doc();
+    apartmentModel.id = doc.id;
+    return doc.set(apartmentModel);
+  }
+  static Future<List<QueryDocumentSnapshot<ApartmentModel>>> readAllApartments()async{
+    var collection = getApartmentCollectionRefrence();
+    QuerySnapshot<ApartmentModel> snapshot = await collection.get();
+    return snapshot.docs;
+  }
+  static Future<List<QueryDocumentSnapshot<ApartmentModel>>> readApartmentsOfUser(String id)async{
+    var collection = getApartmentCollectionRefrence();
+    QuerySnapshot<ApartmentModel> snapshot = await collection.where("userId",isEqualTo: id).get();
+    return snapshot.docs;
   }
 }

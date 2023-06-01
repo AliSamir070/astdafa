@@ -160,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             "تسجيل الدخول",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 24.sp,
+                                fontSize: 22.sp,
                                 fontWeight: FontWeight.bold),
                           ),
                         );
