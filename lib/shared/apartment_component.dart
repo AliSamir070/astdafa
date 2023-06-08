@@ -139,7 +139,7 @@ class ApartmentComponent extends StatelessWidget {
                                 apartment.name??"بدون اسم",
                                 style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 14.sp
+                                    fontSize: 14.sp,
                                 ),
                               ),
                             ),
@@ -148,7 +148,7 @@ class ApartmentComponent extends StatelessWidget {
                               "assets/images/house.svg",
                               height: 20.h,
                               width: 20.w,
-                              colorFilter: const ColorFilter.mode(Color(0xff212A3E), BlendMode.srcIn),
+                              colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
                             ),
 
                           ],
@@ -173,7 +173,7 @@ class ApartmentComponent extends StatelessWidget {
                               "assets/images/location.svg",
                               height: 20.h,
                               width: 20.w,
-                              colorFilter: const ColorFilter.mode(Color(0xff212A3E), BlendMode.srcIn),
+                              colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
                             ),
                           ],
                         ),

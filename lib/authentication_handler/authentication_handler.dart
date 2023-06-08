@@ -15,4 +15,7 @@ class AuthHandler{
   static Future<void> signout()async{
     return await firebaseAuth.signOut();
   }
+  static Future restPassEmail(String email)async{
+    return await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
 }

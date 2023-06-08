@@ -13,6 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 
 import '../../../authentication_handler/authentication_handler.dart';
+import '../../../model/Reservation.dart';
 import '../../../shared/permission_handler.dart';
 
 part 'add_apartment_state.dart';
@@ -60,15 +61,24 @@ class AddApartmentCubit extends Cubit<AddApartmentState> {
               isReserved: false,
               photos: apartmentImagesLinks,
               userId: FirebaseAuth.instance.currentUser?.uid,
-              name: AuthHandler.firebaseAuth.currentUser?.displayName
+              name: AuthHandler.firebaseAuth.currentUser?.displayName,
+              reservation: Reservation(
+                name: "",
+                code: "",
+                phone: "",
+              )
           );
           MyDataBase.addApartment(apartmentModel).then((value){
             emit(AddApartmentSuccessState("تم اضافة الاعلان بنجاح"));
           }).catchError((e){
-            emit(AddApartmentErrorState(FirebaseErrorHandler.handleError(e)));
+            e is Exception
+            ?emit(AddApartmentErrorState(FirebaseErrorHandler.handleError(e)))
+            :emit(AddApartmentErrorState(e.toString()));
           });
         }).catchError((e){
-          emit(AddApartmentErrorState(FirebaseErrorHandler.handleError(e)));
+          e is Exception
+          ?emit(AddApartmentErrorState(FirebaseErrorHandler.handleError(e)))
+          :emit(AddApartmentErrorState(e.toString()));
         });
       }else{
         ApartmentModel apartmentModel = ApartmentModel(
@@ -78,12 +88,19 @@ class AddApartmentCubit extends Cubit<AddApartmentState> {
             isReserved: false,
             photos: [],
             userId: FirebaseAuth.instance.currentUser?.uid,
-            name: FirebaseAuth.instance.currentUser?.displayName
+            name: FirebaseAuth.instance.currentUser?.displayName,
+            reservation: Reservation(
+              name: "",
+              code: "",
+              phone: "",
+            )
         );
         MyDataBase.addApartment(apartmentModel).then((value){
           emit(AddApartmentSuccessState("تم اضافة الاعلان بنجاح"));
         }).catchError((e){
-          emit(AddApartmentErrorState(FirebaseErrorHandler.handleError(e)));
+          e is Exception
+          ?emit(AddApartmentErrorState(FirebaseErrorHandler.handleError(e)))
+          :emit(AddApartmentErrorState(e.toString()));
         });
       }
     }on Exception catch(e){

@@ -1,8 +1,10 @@
 
+import 'package:astdafa/shared/prefs_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../model/ApartmentModel.dart';
 import '../model/CodeModel.dart';
+import '../model/Complain.dart';
 import '../model/user.dart';
 
 class MyDataBase {
@@ -74,11 +76,25 @@ class MyDataBase {
     );
   }
 
+  static CollectionReference<Complain> getComplainsCollectionRefrence(){
+    return FirebaseFirestore.instance.collection(Complain.collectionName)
+        .withConverter(
+        fromFirestore: (snapshot , options)=>Complain.fromJson(snapshot),
+        toFirestore: (complain , options)=>complain.toJson()
+        );
+  }
+
   static Future addApartment(ApartmentModel apartmentModel){
     var collection = getApartmentCollectionRefrence();
     var doc = collection.doc();
     apartmentModel.id = doc.id;
     return doc.set(apartmentModel);
+  }
+  static Future addComplain(Complain complain){
+    var collection = getComplainsCollectionRefrence();
+    var doc = collection.doc();
+    complain.id = doc.id;
+    return doc.set(complain);
   }
   static Future<List<QueryDocumentSnapshot<ApartmentModel>>> readAllApartments()async{
     var collection = getApartmentCollectionRefrence();
@@ -89,5 +105,27 @@ class MyDataBase {
     var collection = getApartmentCollectionRefrence();
     QuerySnapshot<ApartmentModel> snapshot = await collection.where("userId",isEqualTo: id).get();
     return snapshot.docs;
+  }
+  static Future updateApartmentReserved(String apartmentId,String name , String phone)async{
+    var collection = getApartmentCollectionRefrence();
+    var doc = collection.doc(apartmentId);
+    return await doc.update({
+      "isReserved":true,
+      "reservation":{
+        "code":PrefsHelper.getCode(),
+        "name":name,
+        "phone":phone
+      }
+    });
+  }
+  static Future updateCodeReserved()async {
+      var collection = getCodeCollection();
+      var snapshot = await collection.where("code",isEqualTo: PrefsHelper.getCode()).limit(1).get();
+      var doc = collection.doc(snapshot.docs[0].id);
+      return await doc.update(
+        {
+          "isReserved":true
+        }
+      );
   }
 }

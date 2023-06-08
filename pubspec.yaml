@@ -44,11 +44,17 @@ dependencies:
   carousel_slider: ^4.2.1
   fluttertoast: ^8.1.1
   flutter_screenutil: ^5.4.0
+  flare_flutter: ^3.0.2
+  shimmer: ^2.0.0
+  animate_do: ^3.0.2
   loading_animation_widget: ^1.2.0+4
   permission_handler: ^10.2.0
   flutter_svg: ^2.0.0
   rotated_corner_decoration: ^2.1.0+1
   firebase_storage: ^11.2.2
+  shared_preferences: ^2.0.15
+  timer_count_down: ^2.2.2
+  lottie: ^2.3.2
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +66,26 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_icon.jpeg"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  remove_alpha_ios: true
+  web:
+    generate: true
+    image_path: "path/to/image.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "path/to/image.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "path/to/image.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -75,6 +101,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/images/
+     - assets/lottie/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -20,7 +20,9 @@ class MyApartmentCubit extends Cubit<MyApartmentState> {
       AuthHandler.signout().then((value){
         emit(MyApartmentSignOutSuccessState("تم تسجيل الخروج بنجاح"));
       }).catchError((e){
-        emit(MyApartmentSignOutErrorState(FirebaseErrorHandler.handleError(e)));
+        e is Exception
+        ?emit(MyApartmentSignOutErrorState(FirebaseErrorHandler.handleError(e)))
+        :emit(MyApartmentSignOutErrorState(e.toString()));
       });
     }on Exception catch(e){
       emit(MyApartmentSignOutErrorState(FirebaseErrorHandler.handleError(e)));
@@ -34,7 +36,9 @@ class MyApartmentCubit extends Cubit<MyApartmentState> {
         apartments = value.map((e) =>e.data()).toList();
         emit(MyApartmentsGetApartmentsSuccessState());
       }).catchError((e){
-        emit(MyApartmentsGetApartmentsErrorState(FirebaseErrorHandler.handleError(e)));
+        e is Exception
+        ?emit(MyApartmentsGetApartmentsErrorState(FirebaseErrorHandler.handleError(e)))
+        :emit(MyApartmentsGetApartmentsErrorState(e.toString()));
       });
     }on Exception catch(e){
       emit(MyApartmentsGetApartmentsErrorState(FirebaseErrorHandler.handleError(e)));

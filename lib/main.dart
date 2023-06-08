@@ -1,10 +1,13 @@
 import 'package:astdafa/authentication_handler/authentication_handler.dart';
 import 'package:astdafa/layout/account_ads/myapartment.dart';
 import 'package:astdafa/layout/home/home.dart';
+import 'package:astdafa/shared/prefs_helper.dart';
+import 'package:astdafa/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 import 'blocObserver.dart';
@@ -18,6 +21,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  PrefsHelper.prefs = await SharedPreferences.getInstance();
   runApp(MultiBlocProvider(
       providers: [
         BlocProvider(create: (context)=>MyApartmentCubit())
@@ -26,9 +30,32 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget  {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
+    if (state == AppLifecycleState.inactive) {
+      PrefsHelper.clearCode();
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -42,7 +69,7 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.blue,
               fontFamily: "Cairo"
             ),
-            home: AuthHandler.getUser()==null?homescreen():myapartment(),
+            home: SplashScreen(),
           );
         }
     );

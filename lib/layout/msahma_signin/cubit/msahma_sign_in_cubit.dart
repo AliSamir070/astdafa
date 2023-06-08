@@ -18,7 +18,9 @@ class MsahmaSignInCubit extends Cubit<MsahmaSignInState> {
         AuthHandler.login(email, password).then((value){
           emit(MsahmaSignInSuccessState("تم الدخول بنجاح"));
         }).catchError((e){
-          emit(MsahmaSignInErrorState(FirebaseErrorHandler.handleError(e)));
+          e is Exception
+          ?emit(MsahmaSignInErrorState(FirebaseErrorHandler.handleError(e)))
+          :emit(MsahmaSignInErrorState(e.toString()));
         });
       }on Exception catch(e){
         emit(MsahmaSignInErrorState(FirebaseErrorHandler.handleError(e)));

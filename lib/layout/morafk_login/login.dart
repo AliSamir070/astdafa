@@ -45,7 +45,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextFormField(
                     controller: phoneController,
+                    keyboardType: TextInputType.phone,
                     validator: validatePhone,
+                    textInputAction: TextInputAction.next,
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(11)
                     ],
@@ -152,7 +154,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderSide: BorderSide.none,
                           ),
                           onPressed: () {
-                            morafkCubit.login(formKey, codeController.text, phoneController.text);
+                            if(state is! MorafkLoginLoadingState) {
+                              morafkCubit.login(formKey, codeController.text,
+                                  phoneController.text);
+                            }
                           },
                           child:state is MorafkLoginLoadingState
                           ?CustomLoading()

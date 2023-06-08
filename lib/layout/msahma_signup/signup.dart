@@ -53,6 +53,7 @@ class _signupState extends State<signup> {
                   TextFormField(
                     validator: validateName,
                     controller: nameController,
+                    textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       hintText: "First Name",
                       prefixIcon: const Icon(Icons.drive_file_rename_outline),
@@ -92,6 +93,7 @@ class _signupState extends State<signup> {
                   TextFormField(
                     validator: validateEmail,
                     controller: emailController,
+                    textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: "البريد الالكتروني",
@@ -132,6 +134,7 @@ class _signupState extends State<signup> {
                   TextFormField(
                     validator: validatePassword,
                     controller: passwordController,
+                    textInputAction: TextInputAction.next,
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: "أدخل كلمة المرور",
@@ -231,12 +234,14 @@ class _signupState extends State<signup> {
                             borderSide: BorderSide.none,
                           ),
                           onPressed: () {
-                            cubit.signUp(
-                                formKey,
-                                nameController.text,
-                                emailController.text,
-                                phoneController.text,
-                                passwordController.text);
+                            if(state is! MsahmaSignUpLoadingState) {
+                              cubit.signUp(
+                                  formKey,
+                                  nameController.text,
+                                  emailController.text,
+                                  phoneController.text,
+                                  passwordController.text);
+                            }
                           },
                           child: state is MsahmaSignUpLoadingState
                           ?CustomLoading()

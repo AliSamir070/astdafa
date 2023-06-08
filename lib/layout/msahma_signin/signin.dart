@@ -43,6 +43,7 @@ class _signinscreenState extends State<signinscreen> {
                       height: 200.h,
                     ),
                     TextFormField(
+                      textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.emailAddress,
                       validator: validateEmail,
                       controller: emailController,
@@ -143,7 +144,11 @@ class _signinscreenState extends State<signinscreen> {
                                 borderSide: BorderSide.none,
                               ),
                               onPressed: () {
-                                msahmaSignInCubit.signIn(formKey, emailController.text, passwordController.text);
+                                if(state is! MsahmaSignInLoadingState) {
+                                  msahmaSignInCubit.signIn(
+                                      formKey, emailController.text,
+                                      passwordController.text);
+                                }
                               },
                               child: state is MsahmaSignInLoadingState?CustomLoading():Text(
                                 "تسجيل الدخول",

@@ -147,6 +147,7 @@ class _addapartmentState extends State<addapartment> {
                             height: 25.h,
                           ),
                           TextFormField(
+                            textInputAction: TextInputAction.next,
                             controller: addressController,
                             validator: (value){
                               if(value!.isEmpty){
@@ -194,6 +195,7 @@ class _addapartmentState extends State<addapartment> {
                             height: 20.h,
                           ),
                           TextFormField(
+                            textInputAction: TextInputAction.next,
                             controller: descController,
                             validator: (value){
                               if(value!.isEmpty){

@@ -15,6 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../shared/apartment_component.dart';
 import '../../shared/custom_not_items.dart';
+import '../../shared/prefs_helper.dart';
 import '../home/home.dart';
 
 class apartment extends StatefulWidget {
@@ -37,6 +38,7 @@ class _apartmentState extends State<apartment> {
             actions: [
               IconButton(
                   onPressed: (){
+                    PrefsHelper.clearCode();
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>homescreen()));
                   },
                   icon: Icon(
@@ -68,7 +70,7 @@ class _apartmentState extends State<apartment> {
                           onTap: (){
                             Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) {
-                                return detilesapartment(apartmentsCubit.apartments[index]);
+                                return detilesapartment(apartmentsCubit.apartments[index],true);
                               },
                             ));
                           },

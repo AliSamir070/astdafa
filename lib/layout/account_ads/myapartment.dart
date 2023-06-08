@@ -69,7 +69,7 @@ class _myapartmentState extends State<myapartment> {
                     onTap: (){
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) {
-                          return detilesapartment(myApartmentCubit.apartments[index]);
+                          return detilesapartment(myApartmentCubit.apartments[index],false);
                         },
                       ));
                     },

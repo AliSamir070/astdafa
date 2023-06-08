@@ -1,5 +1,6 @@
 import 'package:astdafa/database_helper/my_database.dart';
 import 'package:astdafa/error_handler/firebase_error_handler.dart';
+import 'package:astdafa/shared/prefs_helper.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,15 +28,20 @@ class MorafkLoginCubit extends Cubit<MorafkLoginState> {
               MyDataBase.updateCode(value.id??"", {
                 "entries":(value.entries??0)-1
               }).then((value){
+                PrefsHelper.setData(key: "code", value: code);
                 emit(MorafkLoginSuccessState("تم الدخول بنجاح"));
               }).catchError((e){
-                emit(MorafkLoginErrorState(FirebaseErrorHandler.handleError(e)));
+                e is Exception
+                ?emit(MorafkLoginErrorState(FirebaseErrorHandler.handleError(e)))
+                :emit(MorafkLoginErrorState(e.toString()));
               });
             }
           }
         }).catchError((e){
           print(e);
-          emit(MorafkLoginErrorState(FirebaseErrorHandler.handleError(e)));
+          e is Exception
+          ?emit(MorafkLoginErrorState(FirebaseErrorHandler.handleError(e)))
+          :emit(MorafkLoginErrorState(e.toString()));
         });
       }on Exception catch(e){
         emit(MorafkLoginErrorState(FirebaseErrorHandler.handleError(e)));

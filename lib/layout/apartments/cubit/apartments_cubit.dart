@@ -20,7 +20,10 @@ class ApartmentsCubit extends Cubit<ApartmentsState> {
         apartments = value.map((e) =>e.data()).toList();
         emit(ApartmentGetAllApartmentsSuccessState());
       }).catchError((e){
-        emit(ApartmentGetAllApartmentsErrorState(FirebaseErrorHandler.handleError(e)));
+        print(e.toString());
+        e is Exception?
+        emit(ApartmentGetAllApartmentsErrorState(FirebaseErrorHandler.handleError(e)))
+            :emit(ApartmentGetAllApartmentsErrorState(e.toString()));
       });
     }on Exception catch(e){
       emit(ApartmentGetAllApartmentsErrorState(FirebaseErrorHandler.handleError(e)));
