@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 class addapartment extends StatefulWidget {
   const addapartment({Key? key}) : super(key: key);
@@ -328,7 +329,7 @@ class _addapartmentState extends State<addapartment> {
                               color: Colors.red,
                               padding: REdgeInsets.symmetric(
                                 vertical: 10,
-                                horizontal: 80,
+                                horizontal: 40,
                               ),
                               shape: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(50.r),
@@ -347,6 +348,9 @@ class _addapartmentState extends State<addapartment> {
                                     fontSize: 30.sp,
                                     fontWeight: FontWeight.bold),
                               )),
+                          SizedBox(
+                            height: 20.h,
+                          ),
                         ],
                       ),
                     );

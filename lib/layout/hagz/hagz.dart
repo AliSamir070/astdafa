@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 import '../../shared/prefs_helper.dart';
 
@@ -160,6 +161,167 @@ class _hagzState extends State<hagz> {
                   BlocConsumer<HagzCubit , HagzState>(
                       builder: (context , state){
                         HagzCubit hagzCubit = HagzCubit.get(context);
+                        return Container(
+                          width: 300.w,
+                          height: 200.h,
+                          padding: REdgeInsetsDirectional.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(15.r),
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: InkWell(
+                                  onTap:(){
+                                    showDatePicker(
+                                      context: context,
+                                      initialDate: hagzCubit.checkIn,
+                                      firstDate: DateTime.now(),
+                                      lastDate: hagzCubit.checkIn.add(const Duration(days: 30)),
+
+                                    ).then((value){
+                                      hagzCubit.changeCheckInDate(newCheckIn: value);
+                                    });
+                                  },
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          'بداية الحجز',
+                                          style: TextStyle(
+                                              fontSize: 16.sp,
+                                              color: Colors.black
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                            DateFormat.d("ar").format(hagzCubit.checkIn),
+                                            style:TextStyle(
+                                              fontSize: 20.sp,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                            )
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          DateFormat.MMM("ar").format(hagzCubit.checkIn),
+                                          style: TextStyle(
+                                              fontSize: 24.sp,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          DateFormat.y("ar").format(hagzCubit.checkIn),
+                                          style: TextStyle(
+                                              fontSize: 16.sp,
+                                              color: Colors.black
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 20.w,),
+                              Icon(
+                                Icons.calendar_month,
+                                size: 30.r,
+                              ),
+                              SizedBox(width: 20.w,),
+                              Expanded(
+                                child: InkWell(
+                                  onTap: (){
+                                    showDatePicker(
+                                      builder: (BuildContext context, Widget? child) {
+                                        return Theme(
+                                          data: ThemeData.light().copyWith(
+                                            primaryColor: Colors.black,
+                                            colorScheme: const ColorScheme.light(primary: Colors.black, onPrimary: Colors.white),
+                                            buttonTheme: ButtonThemeData(
+                                              textTheme: ButtonTextTheme.primary,
+                                              buttonColor: Colors.black,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(5.0),
+                                              ),
+                                            ),
+                                          ),
+                                          child: child ?? Container(),
+                                        );
+                                      },
+                                      context: context,
+                                      initialDate: hagzCubit.checkOut,
+                                      firstDate: hagzCubit.checkIn.add(const Duration(days: 1)),
+                                      lastDate: hagzCubit.checkOut.add(const Duration(days: 30)),
+
+                                    ).then((value){
+                                      hagzCubit.changeCheckOutDate(newCheckOut: value);
+                                    });
+                                  },
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          'انتهاء الحجز',
+                                          style: TextStyle(
+                                              fontSize: 16.sp,
+                                              color: Colors.black
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                            DateFormat.d("ar").format(hagzCubit.checkOut),
+                                            style:TextStyle(
+                                              fontSize: 20.sp,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                            )
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          DateFormat.MMM("ar").format(hagzCubit.checkOut),
+                                          style: TextStyle(
+                                              fontSize: 24.sp,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          DateFormat.y("ar").format(hagzCubit.checkOut),
+                                          style: TextStyle(
+                                              fontSize: 16.sp,
+                                              color: Colors.black
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      listener: (context , state){
+
+                      }
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  BlocConsumer<HagzCubit , HagzState>(
+                      builder: (context , state){
+                        HagzCubit hagzCubit = HagzCubit.get(context);
                         return MaterialButton(
                             elevation: 5.0,
                             color: Colors.grey,
@@ -201,6 +363,9 @@ class _hagzState extends State<hagz> {
                           showToast(state.error);
                         }
                       }
+                  ),
+                  SizedBox(
+                    height: 25.h,
                   ),
                 ],
               ),

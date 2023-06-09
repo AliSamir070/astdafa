@@ -13,6 +13,7 @@ class ShakwaCubit extends Cubit<ShakwaState> {
   static ShakwaCubit get(context)=>BlocProvider.of(context);
 
   void AddShakwa(String name , String email , String desc){
+    emit(ShakwaAddLoadingState());
     try{
       MyDataBase.addComplain(Complain(
         name: name,

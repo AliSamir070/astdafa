@@ -55,7 +55,7 @@ class _signupState extends State<signup> {
                     controller: nameController,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                      hintText: "First Name",
+                      hintText: "الاسم",
                       prefixIcon: const Icon(Icons.drive_file_rename_outline),
                       enabledBorder: (OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.r),

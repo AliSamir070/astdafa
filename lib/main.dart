@@ -1,12 +1,10 @@
-import 'package:astdafa/authentication_handler/authentication_handler.dart';
-import 'package:astdafa/layout/account_ads/myapartment.dart';
-import 'package:astdafa/layout/home/home.dart';
 import 'package:astdafa/shared/prefs_helper.dart';
 import 'package:astdafa/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -17,7 +15,7 @@ import 'layout/account_ads/cubit/my_apartment_cubit.dart';
 void main() async {
   Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
-
+  initializeDateFormatting("ar",null);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -67,7 +65,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               primarySwatch: Colors.blue,
-              fontFamily: "Cairo"
+              fontFamily: "Cairo",
+              scaffoldBackgroundColor: Colors.white,
             ),
             home: SplashScreen(),
           );

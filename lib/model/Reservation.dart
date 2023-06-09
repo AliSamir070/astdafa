@@ -6,22 +6,29 @@ class Reservation {
   Reservation({
       this.code, 
       this.name, 
-      this.phone,});
+      this.phone,
+      this.from,
+      this.to});
 
   Reservation.fromJson(dynamic json) {
     code = json['code'];
     name = json['name'];
     phone = json['phone'];
+    from = DateTime.fromMillisecondsSinceEpoch(json["from"]);
+    to = DateTime.fromMillisecondsSinceEpoch(json["to"]);
   }
   String? code;
   String? name;
   String? phone;
-
+  DateTime? from;
+  DateTime? to;
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['code'] = code;
     map['name'] = name;
     map['phone'] = phone;
+    map['from'] = from?.millisecondsSinceEpoch;
+    map['to'] = to?.millisecondsSinceEpoch;
     return map;
   }
 

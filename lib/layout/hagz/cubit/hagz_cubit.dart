@@ -10,6 +10,22 @@ class HagzCubit extends Cubit<HagzState> {
   HagzCubit() : super(HagzInitialState());
   static HagzCubit get(context) => BlocProvider.of(context);
 
+
+  DateTime checkIn = DateTime.now();
+  DateTime checkOut = DateTime.now().add(const Duration(days: 1));
+  void changeCheckInDate({DateTime? newCheckIn}){
+    if(newCheckIn!=null){
+      checkIn = newCheckIn;
+      checkOut = newCheckIn.add(const Duration(days: 1));
+      emit(HagzApartmentChangeCheckIn());
+    }
+  }
+  void changeCheckOutDate({DateTime? newCheckOut}){
+    if(newCheckOut != null){
+      checkOut = newCheckOut;
+      emit(HagzApartmentChangeCheckOut());
+    }
+  }
   void addHagz(String name , String phone , String apartmentId){
     try{
       emit(HagzApartmentLoadingState());

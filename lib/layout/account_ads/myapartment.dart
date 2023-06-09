@@ -103,8 +103,8 @@ class _myapartmentState extends State<myapartment> {
         if(state is MyApartmentSignOutErrorState){
           showToast(state.error);
         }else if(state is MyApartmentSignOutSuccessState){
-          showToast(state.message);
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>homescreen()));
+          showToast(state.message);
         }else if(state is MyApartmentsGetApartmentsErrorState){
           showToast(state.error);
         }

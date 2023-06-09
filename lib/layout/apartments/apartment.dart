@@ -61,25 +61,68 @@ class _apartmentState extends State<apartment> {
                       apartmentsCubit.getMyApartmentsAds();
                     },
 
-                    child: apartmentsCubit.apartments.isEmpty && state is! ApartmentGetAllApartmentsErrorState
-                        ? CustomNoItems()
-                        :ListView.separated(
-                        padding: REdgeInsets.all(16),
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        itemBuilder: (context , index)=>InkWell(
-                          onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) {
-                                return detilesapartment(apartmentsCubit.apartments[index],true);
-                              },
-                            ));
-                          },
-                          child: ApartmentComponent(
-                              apartment: apartmentsCubit.apartments[index]
-                          ),
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        Column(
+                          children: [
+                            Expanded(
+                                child: apartmentsCubit.apartments.isEmpty && state is! ApartmentGetAllApartmentsErrorState
+                                    ? CustomNoItems()
+                                    :ListView.separated(
+                                    padding: REdgeInsets.only(
+                                      bottom: 110,
+                                      left: 16,
+                                      right: 16,
+                                      top: 16
+                                    ),
+                                    physics: const AlwaysScrollableScrollPhysics(),
+                                    itemBuilder: (context , index)=>InkWell(
+                                      onTap: (){
+                                        Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) {
+                                            return detilesapartment(apartmentsCubit.apartments[index],true);
+                                          },
+                                        ));
+                                      },
+                                      child: ApartmentComponent(
+                                          apartment: apartmentsCubit.apartments[index]
+                                      ),
+                                    ),
+                                    separatorBuilder: (context , index)=>SizedBox(height: 20.h,),
+                                    itemCount: apartmentsCubit.apartments.length
+                                )
+                            ),
+                          ],
                         ),
-                        separatorBuilder: (context , index)=>SizedBox(height: 20.h,),
-                        itemCount: apartmentsCubit.apartments.length
+                        Container(
+                          margin: REdgeInsets.symmetric(vertical: 20),
+                          child: MaterialButton(
+                              elevation: 5.0,
+                              color: Colors.red,
+                              padding: REdgeInsets.symmetric(
+                                vertical: 10,
+                                horizontal: 40,
+                              ),
+                              shape: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50.r),
+                                borderSide: BorderSide.none,
+                              ),
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .push(MaterialPageRoute(builder: (context) {
+                                  return const shkwa();
+                                }));
+                              },
+                              child: Text(
+                                "أضف شكوى",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 30.sp,
+                                    fontWeight: FontWeight.bold),
+                              )),
+                        )
+                      ],
                     ));
               },
               listener: (context , state){

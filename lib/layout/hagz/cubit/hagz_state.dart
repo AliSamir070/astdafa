@@ -12,4 +12,6 @@ class HagzApartmentErrorState extends HagzState {
   String error;
   HagzApartmentErrorState(this.error);
 }
+class HagzApartmentChangeCheckIn extends HagzState{}
+class HagzApartmentChangeCheckOut extends HagzState{}
 

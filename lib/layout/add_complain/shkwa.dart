@@ -38,204 +38,214 @@ class _shkwaState extends State<shkwa> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context)=>ShakwaCubit(),
-      child: Scaffold(
-        appBar: AppBar(centerTitle: true,
-          title: const Text("الشكاوي و المقترحات"),
-        ),
-        backgroundColor: Colors.white,
-        body: Container(
-          padding: REdgeInsets.symmetric(
-            horizontal: 28,
+      child: GestureDetector(
+        onTap: (){
+          FocusScope.of(context).unfocus();
+        },
+        child: Scaffold(
+          appBar: AppBar(centerTitle: true,
+            title: const Text("الشكاوي و المقترحات"),
           ),
-          width: MediaQuery.of(context).size.width,
-          child: SingleChildScrollView(
-            child: Form(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 25.h,
-                  ),
-                  Image.asset(
-                    "assets/images/astdafa.png",
-                    width: 200.w,
-                    height: 200.h,
-                  ),
-                  TextFormField(
-                    controller: nameController,
-                    textInputAction: TextInputAction.next,
-                    validator: (value){
-                      if(value!.isEmpty){
-                        return "يجب ادخاله";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      hintText: "الإسم",
-                      prefixIcon: Icon(Icons.email),
-                      enabledBorder: (OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                            width: 1.0.w,
-                          ))),
-                      disabledBorder: (OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                            width: 1.0.w,
-                          ))),
-                      focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide:  BorderSide(
-                            color: Colors.grey,
-                            width: 1.w,
-                          )),
-                      errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide:  BorderSide(
-                            color: Colors.grey,
-                            width: 1.w,
-                          )),
-                      focusedBorder: (OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                            width: 1.0.w,
-                          ))),
+          backgroundColor: Colors.white,
+          body: Container(
+            padding: REdgeInsets.symmetric(
+              horizontal: 28,
+            ),
+            width: MediaQuery.of(context).size.width,
+            child: SingleChildScrollView(
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 25.h,
                     ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  TextFormField(
-                    controller: emailController,
-                    textInputAction: TextInputAction.next,
-                    validator: validateEmail,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      hintText: "أدخل بريدك الإلكتروني",
-                      prefixIcon: Icon(Icons.email),
-                      enabledBorder: (OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                            width: 1.w,
-                          ))),
-                      disabledBorder: (OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                            width: 1.w,
-                          ))),
-                      focusedBorder: (OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                            width: 1.w,
-                          ))),
-                      focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide:  BorderSide(
-                            color: Colors.grey,
-                            width: 1.w,
-                          )),
-                      errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide:  BorderSide(
-                            color: Colors.grey,
-                            width: 1.w,
-                          )),
+                    Image.asset(
+                      "assets/images/astdafa.png",
+                      width: 200.w,
+                      height: 200.h,
                     ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  TextFormField(
-                    controller: descController,
-                    validator: (value){
-                      if(value!.isEmpty){
-                        return "يجب ادخاله";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      hintText: "أدخل الشكوى او المقترح هنا",
-                      prefixIcon: Icon(Icons.subject),
-                      enabledBorder: (OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                            width: 1.w,
-                          ))),
-                      disabledBorder: (OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                            width: 1.w,
-                          ))),
-                      focusedBorder: (OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide: BorderSide(
-                            color: Colors.grey,
-                            width: 1.w,
-                          ))),
-                      focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide:  BorderSide(
-                            color: Colors.grey,
-                            width: 1.w,
-                          )),
-                      errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                          borderSide:  BorderSide(
-                            color: Colors.grey,
-                            width: 1.w,
-                          )),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  BlocConsumer<ShakwaCubit , ShakwaState>(
-                      builder: (context , state){
-                        ShakwaCubit shakwaCubit = ShakwaCubit.get(context);
-                        return MaterialButton(
-                            elevation: 5.0,
-                            color: Colors.grey,
-                            padding: REdgeInsets.symmetric(
-                              vertical: 20,
-                              horizontal: 80,
-                            ),
-                            shape: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50.r),
-                              borderSide: BorderSide.none,
-                            ),
-                            onPressed: () {
-                              if(state is! ShakwaAddLoadingState){
-                                if(formKey.currentState!.validate()){
-                                  shakwaCubit.AddShakwa(nameController.text, emailController.text, descController.text);
-                                }
-                              }
-                            },
-                            child: state is ShakwaAddLoadingState
-                            ?CustomLoading()
-                              :Text(
-                              "تقديم الشكوى",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24.sp,
-                                  fontWeight: FontWeight.bold),
-                            ));
-                      },
-                      listener: (context , state){
-                        if(state is ShakwaAddSuccessState){
-                          showToast(state.message);
-                        }else if(state is ShakwaAddErrorState){
-                          showToast(state.error);
+                    TextFormField(
+                      controller: nameController,
+                      textInputAction: TextInputAction.next,
+                      validator: (value){
+                        if(value!.isEmpty){
+                          return "يجب ادخاله";
                         }
-                      }
-                  ),
-                ],
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        hintText: "الإسم",
+                        prefixIcon: Icon(Icons.email),
+                        enabledBorder: (OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1.0.w,
+                            ))),
+                        disabledBorder: (OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1.0.w,
+                            ))),
+                        focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide:  BorderSide(
+                              color: Colors.grey,
+                              width: 1.w,
+                            )),
+                        errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide:  BorderSide(
+                              color: Colors.grey,
+                              width: 1.w,
+                            )),
+                        focusedBorder: (OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1.0.w,
+                            ))),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    TextFormField(
+                      controller: emailController,
+                      textInputAction: TextInputAction.next,
+                      validator: validateEmail,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        hintText: "أدخل بريدك الإلكتروني",
+                        prefixIcon: Icon(Icons.email),
+                        enabledBorder: (OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1.w,
+                            ))),
+                        disabledBorder: (OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1.w,
+                            ))),
+                        focusedBorder: (OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1.w,
+                            ))),
+                        focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide:  BorderSide(
+                              color: Colors.grey,
+                              width: 1.w,
+                            )),
+                        errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide:  BorderSide(
+                              color: Colors.grey,
+                              width: 1.w,
+                            )),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    TextFormField(
+                      controller: descController,
+                      maxLines: null,
+                      validator: (value){
+                        if(value!.isEmpty){
+                          return "يجب ادخاله";
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        hintText: "أدخل الشكوى او المقترح هنا",
+                        prefixIcon: Icon(Icons.subject),
+                        enabledBorder: (OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1.w,
+                            ))),
+                        disabledBorder: (OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1.w,
+                            ))),
+                        focusedBorder: (OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1.w,
+                            ))),
+                        focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide:  BorderSide(
+                              color: Colors.grey,
+                              width: 1.w,
+                            )),
+                        errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                            borderSide:  BorderSide(
+                              color: Colors.grey,
+                              width: 1.w,
+                            )),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    BlocConsumer<ShakwaCubit , ShakwaState>(
+                        builder: (context , state){
+                          ShakwaCubit shakwaCubit = ShakwaCubit.get(context);
+                          return MaterialButton(
+                              elevation: 5.0,
+                              color: Colors.grey,
+                              padding: REdgeInsets.symmetric(
+                                vertical: 20,
+                                horizontal: 40,
+                              ),
+                              shape: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(50.r),
+                                borderSide: BorderSide.none,
+                              ),
+                              onPressed: () {
+                                if(state is! ShakwaAddLoadingState){
+                                  if(formKey.currentState!.validate()){
+                                    shakwaCubit.AddShakwa(nameController.text, emailController.text, descController.text);
+                                  }
+                                }
+                              },
+                              child: state is ShakwaAddLoadingState
+                              ?CustomLoading()
+                                :Text(
+                                "تقديم الشكوى",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24.sp,
+                                    fontWeight: FontWeight.bold),
+                              ));
+                        },
+                        listener: (context , state){
+                          if(state is ShakwaAddSuccessState){
+                            showToast(state.message);
+                          }else if(state is ShakwaAddErrorState){
+                            showToast(state.error);
+                          }
+                        }
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

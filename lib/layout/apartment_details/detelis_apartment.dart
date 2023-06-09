@@ -1,5 +1,6 @@
 import 'package:astdafa/layout/hagz/hagz.dart';
 import 'package:astdafa/model/ApartmentModel.dart';
+import 'package:astdafa/shared/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -271,10 +272,14 @@ class _detilesapartmentState extends State<detilesapartment> {
                               borderSide: BorderSide.none,
                             ),
                             onPressed: () {
-                              Navigator.of(context)
-                                  .push(MaterialPageRoute(builder: (context) {
-                                return hagz(widget.apartmentModel.id??"");
-                              }));
+                              if(widget.apartmentModel.isReserved??false){
+                                showToast("هذا الاعلان محجوز");
+                              }else{
+                                Navigator.of(context)
+                                    .push(MaterialPageRoute(builder: (context) {
+                                  return hagz(widget.apartmentModel.id??"");
+                                }));
+                              }
                             },
                             child:Text(
                               "حجز",

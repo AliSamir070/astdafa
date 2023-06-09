@@ -13,3 +13,4 @@ class AddApartmentErrorState extends AddApartmentState{
   AddApartmentErrorState(this.error);
 }
 class AddApartmentUploadImages extends AddApartmentState{}
+

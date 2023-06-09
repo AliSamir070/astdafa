@@ -24,7 +24,6 @@ class AddApartmentCubit extends Cubit<AddApartmentState> {
 
   List<XFile> apartmentImages = [];
   List<String> apartmentImagesLinks = [];
-
   Future getImage(ImageSource imageSource) async {
     try{
       if(imageSource == ImageSource.gallery){
