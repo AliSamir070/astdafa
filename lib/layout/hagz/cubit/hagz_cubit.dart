@@ -1,5 +1,7 @@
 import 'package:astdafa/database_helper/my_database.dart';
 import 'package:astdafa/error_handler/firebase_error_handler.dart';
+import 'package:astdafa/model/ApartmentModel.dart';
+import 'package:astdafa/shared/prefs_helper.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -26,11 +28,19 @@ class HagzCubit extends Cubit<HagzState> {
       emit(HagzApartmentChangeCheckOut());
     }
   }
-  void addHagz(String name , String phone , String apartmentId){
+  void addHagz(String name , String phone , String apartmentId,ApartmentModel apartmentModel){
     try{
       emit(HagzApartmentLoadingState());
-      MyDataBase.updateApartmentReserved(apartmentId, name, phone).then((value){
+      MyDataBase.updateApartmentReserved(
+          apartmentId: apartmentId,
+          name: name,
+          phone: phone,
+          apartment: apartmentModel,
+          from: checkIn,
+          to: checkOut
+      ).then((value){
         MyDataBase.updateCodeReserved().then((value) {
+          PrefsHelper.clearCode();
           emit(HagzApartmentSuccessState("تم الحجز بنجاح"));
         }).catchError((e){
           e is Exception

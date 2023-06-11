@@ -1,3 +1,4 @@
+import 'package:astdafa/layout/hagz/cubit/hagz_cubit.dart';
 import 'package:astdafa/shared/prefs_helper.dart';
 import 'package:astdafa/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,7 +23,8 @@ void main() async {
   PrefsHelper.prefs = await SharedPreferences.getInstance();
   runApp(MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context)=>MyApartmentCubit())
+        BlocProvider(create: (context)=>MyApartmentCubit()),
+        BlocProvider(create: (context)=>HagzCubit()),
       ],
       child: const MyApp())
   );

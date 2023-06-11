@@ -20,10 +20,10 @@ class MorafkLoginCubit extends Cubit<MorafkLoginState> {
           if(value == null){
             emit(MorafkLoginErrorState("هذا الكود غير صحيح"));
           }else{
-            if((value.entries??0)==0){
-              emit(MorafkLoginErrorState("هذا الكود منتهي"));
-            }else if(value.isReserved??false){
+            if(value.isReserved??false){
               emit(MorafkLoginErrorState("هذا الكود تم استخدامه"));
+            }else if((value.entries??0)==0){
+              emit(MorafkLoginErrorState("هذا الكود منتهي"));
             }else{
               MyDataBase.updateCode(value.id??"", {
                 "entries":(value.entries??0)-1

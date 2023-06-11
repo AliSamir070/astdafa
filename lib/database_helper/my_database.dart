@@ -1,4 +1,5 @@
 
+import 'package:astdafa/model/Reservation.dart';
 import 'package:astdafa/shared/prefs_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -106,22 +107,34 @@ class MyDataBase {
     QuerySnapshot<ApartmentModel> snapshot = await collection.where("userId",isEqualTo: id).get();
     return snapshot.docs;
   }
-  static Future updateApartmentReserved(String apartmentId,String name , String phone)async{
+  static Future updateApartmentReserved(
+      {
+        required String apartmentId,
+        required String name ,
+        required String phone,
+        required DateTime from,
+        required DateTime to,
+        required ApartmentModel apartment
+      })async{
     var collection = getApartmentCollectionRefrence();
     var doc = collection.doc(apartmentId);
-    return await doc.update({
-      "isReserved":true,
-      "reservation":{
-        "code":PrefsHelper.getCode(),
-        "name":name,
-        "phone":phone
-      }
-    });
+    apartment.reservation = Reservation(
+      name: name,
+      code: PrefsHelper.getCode(),
+      phone: phone,
+      from: from,
+      to: to
+    );
+    apartment.isReserved = true;
+    return await doc.update(
+      apartment.toJson()
+    );
   }
   static Future updateCodeReserved()async {
       var collection = getCodeCollection();
       var snapshot = await collection.where("code",isEqualTo: PrefsHelper.getCode()).limit(1).get();
       var doc = collection.doc(snapshot.docs[0].id);
+
       return await doc.update(
         {
           "isReserved":true
