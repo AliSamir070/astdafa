@@ -14,8 +14,8 @@ class Reservation {
     code = json['code'];
     name = json['name'];
     phone = json['phone'];
-    from = DateTime.fromMillisecondsSinceEpoch(json["from"]);
-    to = DateTime.fromMillisecondsSinceEpoch(json["to"]);
+    from = json["from"]!=null?DateTime.fromMillisecondsSinceEpoch(json["from"]):null;
+    to = json["from"]!=null?DateTime.fromMillisecondsSinceEpoch(json["to"]):null;
   }
   String? code;
   String? name;
