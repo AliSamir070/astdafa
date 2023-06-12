@@ -1,5 +1,6 @@
 import 'package:astdafa/layout/account_ads/cubit/my_apartment_cubit.dart';
 import 'package:astdafa/layout/add_apartment/add_apartment.dart';
+import 'package:astdafa/layout/edit_apartment/cubit/apartment_cubit.dart';
 import 'package:astdafa/shared/apartment_component.dart';
 import 'package:astdafa/shared/constants.dart';
 import 'package:astdafa/shared/custom_not_items.dart';
@@ -7,9 +8,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../../model/ApartmentModel.dart';
 import '../apartment_details/detelis_apartment.dart';
+import '../edit_apartment/edit_apartment_ad_screen.dart';
 import '../home/home.dart';
 
 class myapartment extends StatefulWidget {
@@ -62,23 +65,61 @@ class _myapartmentState extends State<myapartment> {
 
               child: myApartmentCubit.apartments.isEmpty && state is! MyApartmentsGetApartmentsErrorState
                   ? CustomNoItems()
-                  :ListView.separated(
-                  padding: REdgeInsets.all(16),
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  itemBuilder: (context , index)=>InkWell(
-                    onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) {
-                          return detilesapartment(myApartmentCubit.apartments[index],false);
-                        },
-                      ));
-                    },
-                    child: ApartmentComponent(
-                        apartment: myApartmentCubit.apartments[index]
-                    ),
-                  ),
-                  separatorBuilder: (context , index)=>SizedBox(height: 20.h,),
-                  itemCount: myApartmentCubit.apartments.length
+                  :BlocConsumer<EditApartmentCubit , EditApartmentStates>(
+                  builder: (context , editstate){
+                    return ListView.separated(
+                        padding: REdgeInsets.all(16),
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        itemBuilder: (context , index)=>Slidable(
+                          startActionPane: ActionPane(
+                              motion: ScrollMotion(),
+                              children: [
+                                state is MyApartmentDeleteLoadingState
+                                ?const Center(child: CircularProgressIndicator(),)
+                                    : SlidableAction(
+                                  onPressed: (context){
+                                    myApartmentCubit.deleteAd(myApartmentCubit.apartments[index].id??"");
+                                  },
+                                  icon: Icons.delete_outline_rounded,
+                                  label: "حذف",
+                                  borderRadius: BorderRadius.circular(20.r),
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.redAccent,
+                                ),
+                                SlidableAction(
+                                  onPressed: (context){
+                                    Navigator.push(context, MaterialPageRoute(
+                                        builder: (context)=>EditApartmentAdScreen(myApartmentCubit.apartments[index])
+                                    )
+                                    );
+                                  },
+                                  icon: Icons.edit,
+                                  label: "تعديل",
+
+                                  borderRadius: BorderRadius.circular(20.r),
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.grey,
+                                ),
+                              ]
+                          ),
+                          child: InkWell(
+                            onTap: (){
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) {
+                                  return detilesapartment(myApartmentCubit.apartments[index],false);
+                                },
+                              ));
+                            },
+                            child: ApartmentComponent(
+                                apartment: myApartmentCubit.apartments[index]
+                            ),
+                          ),
+                        ),
+                        separatorBuilder: (context , index)=>SizedBox(height: 20.h,),
+                        itemCount: myApartmentCubit.apartments.length
+                    );
+                  },
+                  listener: (context , state){}
               )),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -107,6 +148,10 @@ class _myapartmentState extends State<myapartment> {
           showToast(state.message);
         }else if(state is MyApartmentsGetApartmentsErrorState){
           showToast(state.error);
+        }else if(state is MyApartmentsDeleteErrorState){
+          showToast(state.error);
+        }else if(state is MyApartmentsDeleteSuccessState){
+          showToast(state.message);
         }
       },
     );

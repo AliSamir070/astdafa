@@ -141,4 +141,14 @@ class MyDataBase {
         }
       );
   }
+  static Future deleteApartment(String id)async{
+    var collection = getApartmentCollectionRefrence();
+    return await collection.doc(id).delete();
+  }
+  static Future updateApartment(ApartmentModel apartment)async{
+    var collection = getApartmentCollectionRefrence();
+    return await collection.doc(apartment.id).update(
+      apartment.toJson()
+    );
+  }
 }

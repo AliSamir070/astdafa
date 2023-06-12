@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'blocObserver.dart';
 import 'firebase_options.dart';
 import 'layout/account_ads/cubit/my_apartment_cubit.dart';
+import 'layout/edit_apartment/cubit/apartment_cubit.dart';
 
 void main() async {
   Bloc.observer = MyBlocObserver();
@@ -25,6 +26,7 @@ void main() async {
       providers: [
         BlocProvider(create: (context)=>MyApartmentCubit()),
         BlocProvider(create: (context)=>HagzCubit()),
+        BlocProvider(create: (context)=>EditApartmentCubit(),)
       ],
       child: const MyApp())
   );

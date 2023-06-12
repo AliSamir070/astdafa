@@ -44,4 +44,18 @@ class MyApartmentCubit extends Cubit<MyApartmentState> {
       emit(MyApartmentsGetApartmentsErrorState(FirebaseErrorHandler.handleError(e)));
     }
   }
+
+  void deleteAd(String id){
+    try{
+      emit(MyApartmentDeleteLoadingState());
+      MyDataBase.deleteApartment(id).then((value) {
+        apartments.removeWhere((element) => element.id == id);
+        emit(MyApartmentsDeleteSuccessState("تم حذف الاعلان بنجاح"));
+      }).catchError((e){
+        emit(MyApartmentsDeleteErrorState(FirebaseErrorHandler.handleError(e)));
+      });
+    }on Exception catch(e){
+      emit(MyApartmentsDeleteErrorState(FirebaseErrorHandler.handleError(e)));
+    }
+  }
 }

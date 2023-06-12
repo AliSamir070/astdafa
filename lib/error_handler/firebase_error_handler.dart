@@ -7,44 +7,44 @@ class FirebaseErrorHandler{
     if (error is FirebaseAuthException) {
       switch (error.code) {
         case 'network-request-failed':
-          errorMessage = "Network error";
+          errorMessage = "مشكلة بالانترنت";
           break;
         case 'invalid-email':
-          errorMessage = 'Invalid email address.';
+          errorMessage = 'بريد الكتروني غير صحيح';
           break;
         case 'user-not-found':
-          errorMessage = 'User not found.';
+          errorMessage = 'مستخدم غير مسجل';
           break;
         case 'wrong-password':
-          errorMessage = 'Incorrect password.';
+          errorMessage = 'كلمة مرور خاطئة';
           break;
         case 'email-already-in-use':
-          errorMessage = 'Email already in use.';
+          errorMessage = 'بريد الكتروني مستخدم من قبل';
           break;
         case 'weak-password':
-          errorMessage = 'Password is too weak.';
+          errorMessage = 'كلمة مرور ضعيفة';
           break;
         default:
-          errorMessage = 'An error occurred while processing your request. Please try again later.';
+          errorMessage = 'حدث خظأ اعد المحاولة';
           break;
       }
     } else if (error is FirebaseException) {
       switch (error.code) {
         case 'permission-denied':
-          errorMessage = 'You do not have permission to access this resource.';
+          errorMessage = 'ليس لديك إذن للوصول إلى هذا المورد';
           break;
         case 'not-found':
-          errorMessage = 'The requested resource does not exist.';
+          errorMessage = 'غير متوفرة';
           break;
         case 'unavailable':
-          errorMessage = 'The service is currently unavailable. Please try again later.';
+          errorMessage = 'حدث خظأ اعد المحاولة لاحقا' ;
           break;
         default:
-          errorMessage = 'An error occurred while processing your request. Please try again later.';
+          errorMessage = 'حدث خظأ اعد المحاولة';
           break;
       }
     } else {
-      errorMessage = 'An error occurred while processing your request. Please try again later.';
+      errorMessage = 'حدث خظأ اعد المحاولة';
     }
     return errorMessage;
   }
