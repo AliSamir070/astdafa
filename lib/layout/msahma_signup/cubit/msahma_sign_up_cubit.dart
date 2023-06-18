@@ -2,6 +2,7 @@ import 'package:astdafa/authentication_handler/authentication_handler.dart';
 import 'package:astdafa/database_helper/my_database.dart';
 import 'package:astdafa/error_handler/firebase_error_handler.dart';
 import 'package:astdafa/model/user.dart';
+import 'package:astdafa/shared/prefs_helper.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,9 +26,11 @@ class MsahmaSignUpCubit extends Cubit<MsahmaSignUpState> {
             phone: phone,
             id: AuthHandler.getUser()
           );
+
           MyDataBase.addUser(user, AuthHandler.getUser()??"").then((value){
+
             AuthHandler.firebaseAuth.currentUser?.updateDisplayName(user.name).then((value){
-              emit(MsahmaSignUpSuccessState("تم التسجيل بنجاح"));
+              emit(MsahmaSignUpSuccessState("تم التسجيل بنجاح" , user));
             }).catchError((error){
               error is Exception
               ?emit(MsahmaSignUpErrorState(FirebaseErrorHandler.handleError(error)))

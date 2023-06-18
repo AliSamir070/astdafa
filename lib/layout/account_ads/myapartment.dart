@@ -1,3 +1,4 @@
+import 'package:astdafa/authentication_handler/authentication_handler.dart';
 import 'package:astdafa/layout/account_ads/cubit/my_apartment_cubit.dart';
 import 'package:astdafa/layout/add_apartment/add_apartment.dart';
 import 'package:astdafa/layout/edit_apartment/cubit/apartment_cubit.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../../model/ApartmentModel.dart';
+import '../../shared/prefs_helper.dart';
 import '../apartment_details/detelis_apartment.dart';
 import '../edit_apartment/edit_apartment_ad_screen.dart';
 import '../home/home.dart';
@@ -144,6 +146,7 @@ class _myapartmentState extends State<myapartment> {
         if(state is MyApartmentSignOutErrorState){
           showToast(state.error);
         }else if(state is MyApartmentSignOutSuccessState){
+          PrefsHelper.clearPhone();
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>homescreen()));
           showToast(state.message);
         }else if(state is MyApartmentsGetApartmentsErrorState){

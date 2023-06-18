@@ -1,3 +1,4 @@
+import 'package:astdafa/authentication_handler/authentication_handler.dart';
 import 'package:astdafa/layout/account_ads/myapartment.dart';
 import 'package:astdafa/layout/home/home.dart';
 import 'package:astdafa/layout/msahma_signup/cubit/msahma_sign_up_cubit.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../database_helper/my_database.dart';
 import '../../model/user.dart';
 import '../../shared/constants.dart';
+import '../../shared/prefs_helper.dart';
 
 class signup extends StatefulWidget {
   const signup({Key? key}) : super(key: key);
@@ -259,6 +261,7 @@ class _signupState extends State<signup> {
                           showToast(state.error);
                         }else if(state is MsahmaSignUpSuccessState){
                           showToast(state.message);
+                          PrefsHelper.setData(key: "phone", value: state.user.phone);
                           Navigator.of(context)
                               .pushReplacement(MaterialPageRoute(builder: (context) {
                             return myapartment();

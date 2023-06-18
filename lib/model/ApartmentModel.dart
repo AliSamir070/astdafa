@@ -19,7 +19,8 @@ class ApartmentModel {
       this.photos, 
       this.userId,
       this.name,
-      this.reservation});
+      this.reservation,
+      this.phone});
 
   ApartmentModel.fromJson(dynamic json) {
     address = json['address'];
@@ -31,6 +32,7 @@ class ApartmentModel {
     userId = json['userId'];
     name = json['username'];
     reservation = json["reservation"] != null?Reservation.fromJson(json["reservation"]):null;
+    phone = json["phone"];
   }
   String? address;
   String? describtion;
@@ -41,6 +43,7 @@ class ApartmentModel {
   String? userId;
   String? name;
   Reservation? reservation;
+  String? phone;
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['address'] = address;
@@ -50,6 +53,7 @@ class ApartmentModel {
     map['location'] = location;
     map['photos'] = photos;
     map['userId'] = userId;
+    map["phone"] = phone;
     map['username'] = name;
     if(reservation != null){
       map["reservation"] = reservation?.toJson();

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:astdafa/database_helper/my_database.dart';
 import 'package:astdafa/error_handler/firebase_error_handler.dart';
 import 'package:astdafa/model/ApartmentModel.dart';
+import 'package:astdafa/shared/prefs_helper.dart';
 import 'package:astdafa/storage_handler/storage_handler.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -53,11 +54,13 @@ class AddApartmentCubit extends Cubit<AddApartmentState> {
       emit(AddApartmentLoadingState());
       if(apartmentImages.isNotEmpty){
         uploadImages().then((value) {
+          print("phone: ${PrefsHelper.getPhone()}");
           ApartmentModel apartmentModel = ApartmentModel(
               address: address,
               describtion: description,
               location: location,
               isReserved: false,
+              phone: PrefsHelper.getPhone(),
               photos: apartmentImagesLinks,
               userId: FirebaseAuth.instance.currentUser?.uid,
               name: AuthHandler.firebaseAuth.currentUser?.displayName,
@@ -80,12 +83,14 @@ class AddApartmentCubit extends Cubit<AddApartmentState> {
           :emit(AddApartmentErrorState(e.toString()));
         });
       }else{
+        print("phone: ${PrefsHelper.getPhone()}");
         ApartmentModel apartmentModel = ApartmentModel(
             address: address,
             describtion: description,
             location: location,
             isReserved: false,
             photos: [],
+            phone: PrefsHelper.getPhone(),
             userId: FirebaseAuth.instance.currentUser?.uid,
             name: FirebaseAuth.instance.currentUser?.displayName,
             reservation: Reservation(

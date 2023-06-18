@@ -23,8 +23,13 @@ class PrefsHelper{
   static String getCode(){
     return prefs?.getString("code")??"";
   }
+  static String getPhone(){
+    return prefs?.getString("phone")??"";
+  }
   static void clearCode(){
     prefs?.remove("code");
+  }static void clearPhone(){
+    prefs?.remove("phone");
   }
 
 }

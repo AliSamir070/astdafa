@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
+import '../model/user.dart' as userModel;
 class AuthHandler{
   static FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   static Future<UserCredential> register(String email , String password)async{

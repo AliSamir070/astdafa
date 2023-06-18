@@ -6,7 +6,8 @@ class MsahmaSignInInitial extends MsahmaSignInState {}
 class MsahmaSignInLoadingState extends MsahmaSignInState{}
 class MsahmaSignInSuccessState extends MsahmaSignInState{
   String message;
-  MsahmaSignInSuccessState(this.message);
+  User user;
+  MsahmaSignInSuccessState(this.message,this.user);
 }
 class MsahmaSignInErrorState extends MsahmaSignInState{
   String error;

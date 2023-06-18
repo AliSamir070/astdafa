@@ -1,3 +1,4 @@
+import 'package:astdafa/authentication_handler/authentication_handler.dart';
 import 'package:astdafa/layout/msahma_forgot_passowrd/forget_the_password.dart';
 import 'package:astdafa/layout/account_ads/myapartment.dart';
 import 'package:astdafa/layout/msahma_signin/cubit/msahma_sign_in_cubit.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../database_helper/my_database.dart';
 import '../../shared/custom_loading.dart';
+import '../../shared/prefs_helper.dart';
 
 class signinscreen extends StatefulWidget {
   const signinscreen({Key? key}) : super(key: key);
@@ -161,6 +163,7 @@ class _signinscreenState extends State<signinscreen> {
                         listener: (context , state){
                           if(state is MsahmaSignInSuccessState){
                             showToast(state.message);
+                            PrefsHelper.setData(key: "phone", value: state.user.phone);
                             Navigator.of(context)
                                 .pushReplacement(MaterialPageRoute(builder: (context) {
                               return myapartment();

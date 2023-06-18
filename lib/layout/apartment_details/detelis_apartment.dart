@@ -54,7 +54,7 @@ class _detilesapartmentState extends State<detilesapartment> {
               slivers: [
                 SliverAppBar(
                   pinned: true,
-                  snap: true,
+                  snap: false,
                   floating: true,
                   expandedHeight: 300.h,
                   leading: IconButton(
@@ -166,6 +166,42 @@ class _detilesapartmentState extends State<detilesapartment> {
                           style: TextStyle(
                             fontSize:16.sp,
                           ),
+                          textDirection: ui.TextDirection.rtl,
+                        ),
+                        SizedBox(
+                          height:30.h,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          textDirection: ui.TextDirection.rtl,
+                          children: [
+                            SvgPicture.asset(
+                              "assets/images/house.svg",
+                              height: 25.h,
+                              width: 25.w,
+                              colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+                            ),
+                            SizedBox(width: 10.w,),
+                            Flexible(
+                              child: Text(
+                                "عنوان",
+                                style: TextStyle(
+                                    fontSize:20.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff212A3E)
+                                ),
+                              ),
+                            ),
+
+                          ],
+                        ),
+                        SizedBox(height: 10.h,),
+                        Text(
+                          widget.apartmentModel.address??"ليس هناك عنوان",
+                          style: TextStyle(
+                            fontSize:16.sp,
+                          ),
+                          textDirection: ui.TextDirection.rtl,
                         ),
                         SizedBox(
                           height:30.h,
@@ -199,6 +235,7 @@ class _detilesapartmentState extends State<detilesapartment> {
                           style: TextStyle(
                             fontSize:16.sp,
                           ),
+                          textDirection: ui.TextDirection.rtl,
                         ),
                         SizedBox(
                           height:30.h,
@@ -208,7 +245,7 @@ class _detilesapartmentState extends State<detilesapartment> {
                           textDirection: ui.TextDirection.rtl,
                           children: [
                             SvgPicture.asset(
-                              "assets/images/location.svg",
+                              "assets/images/phone2.svg",
                               height: 25.h,
                               width: 25.w,
                               colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
@@ -216,7 +253,7 @@ class _detilesapartmentState extends State<detilesapartment> {
                             SizedBox(width: 10.w,),
                             Flexible(
                               child: Text(
-                                "عنوان",
+                                "رقم الهاتف",
                                 style: TextStyle(
                                     fontSize:20.sp,
                                     fontWeight: FontWeight.bold,
@@ -224,15 +261,15 @@ class _detilesapartmentState extends State<detilesapartment> {
                                 ),
                               ),
                             ),
-
                           ],
                         ),
                         SizedBox(height: 10.h,),
                         Text(
-                          widget.apartmentModel.address??"ليس هناك عنوان",
+                          widget.apartmentModel.phone??"ليس هناك رقم للتواصل",
                           style: TextStyle(
                             fontSize:16.sp,
                           ),
+                          textDirection: ui.TextDirection.rtl,
                         ),
                         SizedBox(
                           height:30.h,
@@ -264,8 +301,9 @@ class _detilesapartmentState extends State<detilesapartment> {
                           style: TextStyle(
                             fontSize:16.sp,
                           ),
+                          textDirection: ui.TextDirection.rtl,
                         ),
-                        if(widget.apartmentModel.isReserved??false)
+                        if((widget.apartmentModel.isReserved??false) && !widget.isMorafk)
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
@@ -302,6 +340,16 @@ class _detilesapartmentState extends State<detilesapartment> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
+                                    Text(
+                                      "كود الحجز : ${widget.apartmentModel.reservation?.code}",
+                                      textDirection: ui.TextDirection.rtl,
+                                      style: TextStyle(
+
+                                          fontSize:16.sp,
+                                          color: Color(0xff212A3E)
+                                      ),
+                                    ),
+                                    SizedBox(height: 10.h,),
                                     Text(
                                       "الاسم : ${widget.apartmentModel.reservation?.name}",
                                       textDirection: ui.TextDirection.rtl,
